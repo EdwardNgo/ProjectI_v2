@@ -1,0 +1,44 @@
+{%extends 'music/base.html'%}
+{% block title%}Login{% endblock %}
+
+{% block content %}
+
+<h2 style="text-align: center; padding-top: 2%; color: rgb(218, 16, 16);">Upload Your muzik</h2>
+
+<div class="container my-3">
+    <form action="/muzik/upload" enctype="multipart/form-data" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Your muzik Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Your Song Name">
+        </div>
+        
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Singer Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="singer" placeholder="Singer Name">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tags :</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="tag" placeholder="Tags (Seperate By Commas)">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Image Link: (Associated With Your muzik)</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="image" placeholder="Link to Image">
+          </div>    
+
+
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+          </div>
+        
+    <div style="padding-top: 3%; padding-bottom: 3%;">
+        <button type="submit" class="btn btn-primary">Upload...</button>
+    </div>
+      </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'music/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+<div class="col-8">
+   <div id="carouselExampleSlidesOnly" style="padding-left: 8%; padding-top: 2%; " class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <img src="{% static 'img/binz.jpg'%}" class="d-block w-100" alt="..." />
+         </div>
+         <div class="carousel-item">
+            <img src="{% static 'img/kpop.jpg'%}" class="d-block w-100" alt="..." />
+         </div>
+         <div class="carousel-item">
+            <img src="{% static 'img/top20.jpg'%}" class="d-block w-100" alt="..." />
+         </div>
+      </div>
+   </div>
+   <!-- ################################ CARDS ##################################################### -->
+   <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Trending Songs</h2>
+   <div class="row" style="padding-top: 2%; padding-left: 7%;">
+      {% for i in song%}
+      <div style="padding-left: 2%;    display: table;" class = "col-4">
+         <div class="card ">
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body" style = "display: table-cell;  ">
+               <h4 class="card-title">
+               {{i.name}}</h5>
+               <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+               <p class="card-text" style="color: green;">Singer: {{i.singer}}</p>
+               <a href="songs/{{i.song_id}}" class="btn btn-primary">Listen</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   <hr />
+   {% if user.is_authenticated %}
+
+   <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Recently Listened</h2>
+   <div class="row" style="padding-top: 2%; padding-left: 7%;">
+      {% for i in song%}
+      <div style="padding-left: 2%;" class = "col-4">
+         <div class="card " >
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+               <h5 class="card-title">{{i.name}}</h5>
+               <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+               <p class="card-text" style="color: green;">Singer: {{i.singer}}</p>
+               <a href="songs/{{i.song_id}}" class="btn btn-primary">Listen</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   {% endif %}
+   <hr />
+   <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">You May Like </h2>
+   <div class="row" style="padding-top: 2%; padding-left: 7%;">
+      {% for i in song%}
+      <div style="padding-left: 2%;" class = "col-4">
+         <div class="card " >
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+               <h5 class="card-title">{{i.name}}</h5>
+               <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+               <p class="card-text" style="color: green;">Singer: {{i.singer}}</p>
+               <a href="songs/{{i.song_id}}" class="btn btn-primary">Listen</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   <hr />
+</div>
+<div class="col-4">
+   <!--Grid row-->
+   <div style="padding-top: 2%;" >
+      <h2 class="title-section fs18">Chủ đề hot</h2>
+      <div style = "padding-top: 2%; padding-right: 7%">
+         <img src="{% static 'img/trending.jpg'%}"  style='height: 100%; width: 100%; object-fit: contain'  class="img-responsive" alt="Trending">
+      </div>
+      <div style = "padding-top: 2%; padding-right: 7%">
+         <img src="{% static 'img/viet.jpg'%}"  style='height: 100%; width: 100%; object-fit: contain'  class="img-responsive" alt="Trending">
+      </div>
+      <div style = "padding-top: 2%; padding-right: 7%">
+         <img src="{% static 'img/lovesong.jpg'%}"  style='height: 100%; width: 100%; object-fit: contain'  class="img-responsive" alt="Trending">
+      </div>
+      <div style = "padding-top: 2%; padding-right: 7%">
+         <img src="{% static 'img/ksinger.jpg'%}"  style='height: 100%; width: 100%; object-fit: contain'  class="img-responsive" alt="Trending">
+      </div>
+      <div style = "padding-top: 2%; padding-right: 7%">
+         <img src="{% static 'img/today.jpg'%}"  style=' width: 100%; object-fit: contain'  class="img-responsive" alt="Trending">
+      </div>
+   </div>
+   <div style="padding-top: 5%;" >
+      <h2 class="title-section fs18">Tin tức âm nhạc</h2>
+<div class="item item-0 item-w100 item-right-in item-cate-in item-title-right item-ho item-blog-0" data-fnw="100" style = "padding-top: 2%;">
+   <div class="item-inner row">
+      <div class="item-mid col-4">
+         <div class="item-mid-content">
+            <div class="item-mid-content-inner"><a href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/" class="item-mid-content-floor"></a></div>
+         </div>
+         <a title="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết" class="sneeit-thumb sneeit-thumb-f optimized" href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/"><span class="sneeit-thumb-landscape"><img width="150" height="99" src="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết" data-s="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg" data-ss="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg 150w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-250x164.jpg 250w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-400x263.jpg 400w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-50x33.jpg 50w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-100x66.jpg 100w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-200x132.jpg 200w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-300x197.jpg 300w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-350x230.jpg 350w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-450x296.jpg 450w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-500x329.jpg 500w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-550x362.jpg 550w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb.jpg 570w"></span></a>
+      </div>
+      <div class ="col"></div>
+      <div class="item-bot col-7">
+         <div class="item-bot-content">
+            <p class="item-title"><a href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/" title="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết">Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết</a></p>
+            <span class="item-meta"><a href="https://viethiphop.vn/author/lazie-trv/" target="_blank" class="item-author">Võ Thiết Tâm</a><a class="item-date-time" href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/">- 22/12/2019</a></span>
+         </div>
+      </div>
+   </div>
+</div>
+<hr></hr>
+<div class="item item-0 item-w100 item-right-in item-cate-in item-title-right item-ho item-blog-0" style="padding-top:2%;" data-fnw="100">
+   <div class="item-inner row">
+      <div class="item-mid col-4">
+         <div class="item-mid-content">
+            <div class="item-mid-content-inner"><a href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/" class="item-mid-content-floor"></a></div>
+         </div>
+         <a title="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết" class="sneeit-thumb sneeit-thumb-f optimized" href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/"><span class="sneeit-thumb-landscape"><img width="150" height="99" src="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết" data-s="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg" data-ss="https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-150x99.jpg 150w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-250x164.jpg 250w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-400x263.jpg 400w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-50x33.jpg 50w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-100x66.jpg 100w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-200x132.jpg 200w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-300x197.jpg 300w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-350x230.jpg 350w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-450x296.jpg 450w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-500x329.jpg 500w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb-550x362.jpg 550w, https://viethiphop.vn/wp-content/uploads/2019/12/2016-04-22-1461291980-2515978-biggiesmallsghost1-thumb.jpg 570w"></span></a>
+      </div>
+      <div class ="col"></div>
+      <div class="item-bot col-7">
+         <div class="item-bot-content">
+            <p class="item-title"><a href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/" title="Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết">Tất tần tật về Flow (P1): Sơ đồ Flow, beat và bar, âm tiết và nhấn âm tiết</a></p>
+            <span class="item-meta"><a href="https://viethiphop.vn/author/lazie-trv/" target="_blank" class="item-author">Võ Thiết Tâm</a><a class="item-date-time" href="https://viethiphop.vn/kien-thuc/ki-nang/tat-tan-tat-ve-flow-p1-so-do-flow-beat-va-bar-am-tiet-va-nhan-am-tiet/">- 22/12/2019</a></span>
+         </div>
+      </div>
+   </div>
+</div>
+   </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{%extends 'music/base.html'%}
+{% block title%}All Songs{% endblock %}
+
+{% block content %}
+{% if message%}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 1500
+    })
+</script>
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="padding-top: 3%;">
+            <img src="{{song.image.url}}" alt="" height="250px" width="350px">
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 6%; font-weight: 550; color: green;">Title: {{song.name}}</h2>
+            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{song.tags}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Singer: {{song.singer}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Credit: <a href="{{song.credit}}" target="blank_">Click
+                    here</a></h5>
+
+            <audio controls style="padding-top: 2%;">
+                <source src="{{song.song.url}}" type="audio/mpeg">
+            </audio>
+
+            <div style="padding-top: 2%;">
+
+                <div class="row" style="padding-left: 3%;">
+                    <form action="/muzik/watchlater" method="POST">{% csrf_token %}
+                        <input type="hidden" name="video_id" value="{{song.song_id}}">
+                        <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listen
+                            Later</button>
+                    </form>
+                    <a download href="/media/{{song.song}}" style="padding-left: 1%;"><button
+                            class="btn btn-outline-danger">Download Song</button></a>
+                    <form action="{% url 'like_song' song.pk %}" method="POST">
+                        {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        {% if liked %}
+                            <button type="submit" class="btn btn-danger" name = "song_id" value="{{song.song_id}}">Unlike-{{totalLikes}}</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-primary" name = "song_id" value="{{song.song_id}}">Like-{{totalLikes}}</button>
+                        {% endif %}
+                    {% else %}
+                        <small><a class = "nav-link" href = "{% url 'login' %}">Login</a>Login to like </small>
+                    {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Same tag</h2>
+   <div class="row" style="padding-top: 2%; padding-left: 7%;">
+      {% for i in tag%}
+      <div style="padding-left: 2%;    display: table;" class = "col-4">
+         <div class="card ">
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body" style = "display: table-cell;  ">
+               <h4 class="card-title">
+               {{i.name}}</h5>
+               <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+               <p class="card-text" style="color: green;">Singer: {{i.singer}}</p>
+               <a href="{{i.song_id}}" class="btn btn-primary">Listen</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+
+   <h2 style="padding-left: 8%; padding-top: 2%; font-family: 'Verdana';">Same Singer</h2>
+   <div class="row" style="padding-top: 2%; padding-left: 7%;">
+      {% for i in singer%}
+      <div style="padding-left: 2%;    display: table;" class = "col-4">
+         <div class="card ">
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body" style = "display: table-cell;  ">
+               <h4 class="card-title">
+               {{i.name}}</h5>
+               <p class="card-text" style="color: green;">Tags: {{i.tags}}</p>
+               <p class="card-text" style="color: green;">Singer: {{i.singer}}</p>
+               <a href="{{i.song_id}}" class="btn btn-primary">Listen</a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+
+<script>
+
+</script>
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}
